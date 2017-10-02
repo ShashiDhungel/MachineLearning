@@ -1,2 +1,2 @@
 # MachineLearning
-This repository consists of ML algorithms used in credit risk modeling
+This repository consists of ML algorithms used in credit risk modeling. Try it!
