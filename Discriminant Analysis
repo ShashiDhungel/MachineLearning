@@ -9,3 +9,5 @@ CrossTable(x=x.lda.crosstab$Predicted, y=x.lda.crosstab$Observed)
 
 # To see the model parameters
 x.lda.fit
+
+# summary(x.lda.fit)
