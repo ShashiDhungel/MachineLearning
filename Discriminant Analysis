@@ -7,4 +7,5 @@ x.lda.crosstab<-data.frame(x.lda.pred$class, data[ind ==2,1])
 colnames(x.lda.crosstab)<-c("Predicted", "Observed")
 CrossTable(x=x.lda.crosstab$Predicted, y=x.lda.crosstab$Observed)
 
-
+# To see the model parameters
+x.lda.fit
