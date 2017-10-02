@@ -41,3 +41,36 @@ x.rf.crosstab<-data.frame(x.rf.pred, data[ind ==2,1])
 
 colnames(x.rf.crosstab)<-c("Predicted", "Observed")
 CrossTable(x=x.rf.crosstab$Predicted, y=x.rf.crosstab$Observed)
+
+
+#Building artificial neural network using RSNNS library!
+
+library(RSNNS)
+
+#Since neural network requires all variables to be numeric make sure to use dummy variables for categorical variables. If we assume
+independent_1 to be categorical we can make use of decodeClassLabels that comes with RSNNS
+
+independent_1_Dec<-decodeClassLabels(data$independent_1)
+dataValues<-data[,2:5]
+dataTargets<-data[,1:1]
+
+#Splitting to training and test using th ebuilt in splitForTrainingAndTest
+data<-splitForTrainingAndTest(dataValues, dataTargets, ratio = 0.3)
+data<-normTrainingAndTestSet(data)
+model<-mlp(data$inputsTrain, 
+           data$targetsTrain, 
+           size =5, 
+           learnFuncParams = 0.1, 
+           maxit =60, 
+           inputsTest = data$inputsTest, 
+           targetsTest = data$targetsTest)
+
+predictions<-predict(model, data$inputTest)
+
+#Build Confusion Matrix
+confusionMatrix(data$targetsTest, predictions)
+
+
+
+
+
